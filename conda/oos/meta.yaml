@@ -1,0 +1,32 @@
+package:
+  name: oos
+  version: 0.0.1
+source:
+  sha256: bea2c963c94988bf2da6f04a1765e324d8c2775548fa662d79ed6b7408d0ec30
+  url: https://files.pythonhosted.org/packages/da/57/24c9ab9d57ec61bd2a40b91bbb67ad40dfe19cf615589fd4f18ea6859b45/oos-0.0.1.tar.gz
+about:
+  dev_url: https://armstrys.github.io
+  doc_url: https://armstrys.github.io
+  home: https://armstrys.github.io
+  license: Apache Software
+  license_family: APACHE
+  summary: A basic object-oriented programming framework for sports analysis
+build:
+  noarch: python
+  number: '0'
+  script: '{{ PYTHON }} -m pip install . -vv'
+extra:
+  recipe-maintainers:
+  - armstrys
+requirements:
+  host:
+  - pip
+  - python
+  - packaging
+  run:
+  - pip
+  - python
+  - packaging
+test:
+  imports:
+  - oos
