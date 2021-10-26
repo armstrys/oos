@@ -52,7 +52,6 @@ class Base_Object(object):
 
 import pandas as pd
 import inspect
-from .base import Base_Object
 
 class Base_Handler():
     def __init__(self, obj_class=Base_Object, obj_list=None, obj_df=None, property_mappings={}):
