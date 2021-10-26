@@ -209,8 +209,6 @@ class Base_Handler():
             raise ValueError(f'{as_type} not a valid for as_type argument')
 
 
-
-
     def map_object_method(self, col_name, obj_method):
 
         '''
