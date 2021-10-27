@@ -1,9 +1,9 @@
 package:
   name: oos
-  version: 0.0.1
+  version: 0.0.2
 source:
-  sha256: bea2c963c94988bf2da6f04a1765e324d8c2775548fa662d79ed6b7408d0ec30
-  url: https://files.pythonhosted.org/packages/da/57/24c9ab9d57ec61bd2a40b91bbb67ad40dfe19cf615589fd4f18ea6859b45/oos-0.0.1.tar.gz
+  sha256: ff17ae6533781062fb7d1b5bb7b57c7cfc621af979b3d18e41e52e85e56cd6a6
+  url: https://files.pythonhosted.org/packages/63/a6/6a87220787c4f95a6cb8e801e9e235593bb20bd91fd43133f784497ccdfc/oos-0.0.2.tar.gz
 about:
   dev_url: https://armstrys.github.io
   doc_url: https://armstrys.github.io
@@ -23,10 +23,12 @@ requirements:
   - pip
   - python
   - packaging
+  - pandas
   run:
   - pip
   - python
   - packaging
+  - pandas
 test:
   imports:
   - oos

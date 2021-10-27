@@ -12,6 +12,12 @@ entries:
     - output: web,pdf
       title: base
       url: base.html
+    - output: web,pdf
+      title: sports_generic.objects
+      url: sports_generic.objects.html
+    - output: web,pdf
+      title: sports_generic.handlers
+      url: sports_generic.handlers.html
     output: web
     title: oos
   output: web

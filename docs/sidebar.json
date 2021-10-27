@@ -1,6 +1,8 @@
 {
   "oos": {
     "Overview": "/",
-    "base": "base.html"
+    "base": "base.html",
+    "sports_generic.objects": "sports_generic.objects.html",
+    "sports_generic.handlers": "sports_generic.handlers.html"
   }
 }

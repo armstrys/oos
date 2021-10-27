@@ -73,7 +73,7 @@ class Base_Handler():
 
         # get a property list from the base object
         if not issubclass(obj_class, Base_Object):
-            raise Error('obj_class {obj_class} is not a subclass of the Base_Object class')
+            raise TypeError('obj_class {obj_class} is not a subclass of the Base_Object class')
         self._obj_class = obj_class
         self._obj_properties = list(obj_class(object_id='test').get_properties().keys())
         self._property_mappings = property_mappings
