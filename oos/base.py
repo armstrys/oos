@@ -72,6 +72,8 @@ class Base_Handler():
         '''
 
         # get a property list from the base object
+        if not issubclass(obj_class, Base_Object):
+            raise Error('obj_class {obj_class} is not a subclass of the Base_Object class')
         self._obj_class = obj_class
         self._obj_properties = list(obj_class(object_id='test').get_properties().keys())
         self._property_mappings = property_mappings
@@ -115,7 +117,7 @@ class Base_Handler():
                     )
                 )
 
-                self.update_df_from_objects()
+                self.make_df_from_objects(inplace=True)
             except AttributeError:
                 raise e
 
@@ -127,8 +129,8 @@ class Base_Handler():
                 raise ValueError('DataFrame columns do not match the property ' \
                     'mapping values and cannot be mapped')
 
-            self.dataframe = obj_df.reset_index().copy()
-            self.update_objects_from_df()
+            self.dataframe = obj_df.reset_index(drop=True).copy()
+            self.make_objects_from_df(inplace=True)
 
     @property
     def object_properties(self):
@@ -144,13 +146,13 @@ class Base_Handler():
     def __repr__(self):
         return repr(self.dataframe.set_index('object_id'))
 
-    def update_objects_from_df(self):
+    def make_objects_from_df(self, inplace=False):
         '''
         function to refresh Base_Handler.objects based on DataFrame
         Changes can be made at the dataframe level and applied back to the
         Objects.
         '''
-        self._objects = {
+        objects = {
             row[self._property_mappings['object_id']]:
             self._obj_class(
                 **{self._column_mappings[k]: v
@@ -160,18 +162,29 @@ class Base_Handler():
             for _, row in self.dataframe.iterrows()
         }
 
-    def update_df_from_objects(self):
+        if inplace:
+            self._objects = objects
+        else:
+            return objects
+
+    def make_df_from_objects(self, inplace=False):
         '''
         function to refresh DataFrame based on Base_Handler.objects.
         Changes can be made at the object level and applied back to the
         DataFrame
         '''
-        self.dataframe = pd.DataFrame(data={
+
+        dataframe = pd.DataFrame(data={
             col: [eval(f'o.{prop}') for o in self._objects.values()]
             for prop, col in self._property_mappings.items()
         })
 
-    def query(self, query, as_type='handler'):
+        if inplace:
+            self.dataframe = dataframe
+        else:
+            return dataframe
+
+    def query(self, expr, as_type='handler'):
         '''
         returns a df that matches the supplied query with
         the objects in the objects column.
@@ -189,7 +202,7 @@ class Base_Handler():
                             is returned.
         '''
 
-        df = self.dataframe.query(query).copy()
+        df = self.dataframe.query(expr).copy()
         objects = df['object_id'].map(self._objects.get)
 
         if as_type=='handler':
@@ -209,7 +222,7 @@ class Base_Handler():
             raise ValueError(f'{as_type} not a valid for as_type argument')
 
 
-    def map_object_method(self, col_name, obj_method):
+    def map_object_method(self, obj_method, col_name=None):
 
         '''
         built to function similarly to DataFrame.map. This method will map
@@ -221,7 +234,12 @@ class Base_Handler():
             col_name (str): column name to be mapped to
             obj_method (method): the method from the base object to apply
         '''
-
+        DeprecationWarning(
+            '''The preferred method to acheive this is to make
+               build a property within the object class that is generated
+               by calling the object method. Unless a reason presents itself,
+               this method seems more convoluted and will diappear eventually
+            ''')
         if not inspect.isfunction(obj_method):
             raise TypeError(f'{obj_method.__qualname__} is not a method')
 
@@ -232,6 +250,9 @@ class Base_Handler():
         method_name = obj_method.__name__
         data = {k: eval(f'v.{method_name}()')
                 for k, v in self._objects.items()}
+
+        if not col_name:
+            col_name = method_name
 
         self.dataframe.set_index('object_id', inplace=True)
         self.dataframe[col_name] = pd.Series(data=data, index=data.keys())

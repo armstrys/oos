@@ -6,8 +6,8 @@ title: base
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "Base classes that form the foundation of this package."
-description: "Base classes that form the foundation of this package."
+summary: "Base classes that form the foundation of this package `Base_Object` and `Base_Handler` - an object class and a handler class that link the objects the Pandas DataFrame world and Object-Oriented thinking."
+description: "Base classes that form the foundation of this package `Base_Object` and `Base_Handler` - an object class and a handler class that link the objects the Pandas DataFrame world and Object-Oriented thinking."
 nb_path: "00_base.ipynb"
 ---
 <!--
@@ -40,6 +40,13 @@ nb_path: "00_base.ipynb"
     
 <div class="cell border-box-sizing code_cell rendered">
 
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
 <div class="output_wrapper">
 <div class="output">
 
@@ -47,7 +54,7 @@ nb_path: "00_base.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Base_Object" class="doc_header"><code>class</code> <code>Base_Object</code><a href="https://github.com/armstrys/oos/tree/main/oos/base.py#L10" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Base_Object</code>(<strong><code>object_id</code></strong>=<em><code>None</code></em>)</p>
+<h2 id="Base_Object" class="doc_header"><code>class</code> <code>Base_Object</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Base_Object</code>(<strong><code>object_id</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>A base object. The only requirement of all
 objects is that they have an object_id which can be used
@@ -59,13 +66,6 @@ as a DataFrame index and for tracking in the Handler class.</p>
 
 </div>
 </div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -83,8 +83,8 @@ as a DataFrame index and for tracking in the Handler class.</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_obj</span> <span class="o">=</span> <span class="n">Base_Object</span><span class="p">(</span><span class="n">object_id</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
-<span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">new_obj</span><span class="o">.</span><span class="n">object_id</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">one_obj</span> <span class="o">=</span> <span class="n">Base_Object</span><span class="p">(</span><span class="n">object_id</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">one_obj</span><span class="o">.</span><span class="n">object_id</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span>
 </pre></div>
 
     </div>
@@ -134,12 +134,117 @@ basis for creating the pandas dataframe</p>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="Base_Handler" class="doc_header"><code>class</code> <code>Base_Handler</code><a href="https://github.com/armstrys/oos/tree/main/oos/base.py#L56" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Base_Handler</code>(<strong><code>obj_class</code></strong>=<em><code>Base_Object</code></em>, <strong><code>obj_list</code></strong>=<em><code>None</code></em>, <strong><code>obj_df</code></strong>=<em><code>None</code></em>, <strong><code>property_mappings</code></strong>=<em><code>{}</code></em>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Examples">Examples<a class="anchor-link" href="#Examples"> </a></h2><p>The handler can be built from a list of objects of the same object class. The all properties of the object class are parsed into a dataframe. In the case of our base class the only property is object_id</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">handler</span> <span class="o">=</span> <span class="n">Base_Handler</span><span class="p">(</span><span class="n">Base_Object</span><span class="p">,</span><span class="n">obj_list</span><span class="o">=</span><span class="p">[</span><span class="n">new_obj</span><span class="p">,</span> <span class="n">second_obj</span><span class="p">])</span>
-<span class="n">handler</span><span class="o">.</span><span class="n">object_properties</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">one_handler</span> <span class="o">=</span> <span class="n">Base_Handler</span><span class="p">(</span><span class="n">obj_class</span><span class="o">=</span><span class="n">Base_Object</span><span class="p">,</span> <span class="n">obj_list</span><span class="o">=</span><span class="p">[</span><span class="n">one_obj</span><span class="p">,</span> <span class="n">second_obj</span><span class="p">])</span>
+<span class="k">assert</span> <span class="n">one_handler</span><span class="o">.</span><span class="n">object_properties</span><span class="o">==</span><span class="nb">list</span><span class="p">(</span><span class="n">one_handler</span><span class="o">.</span><span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">one_handler</span><span class="o">.</span><span class="n">dataframe</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>object_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>123</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>234</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Alternatively, we can build the handler class from a dataframe and any columns that correspond to a property in the target object class will be made into a list of objects so that each row is has a matching object. The second cell below shows that the object dictionary <code>{object_id: object instance}</code> created from a DataFrame matches the dictionary created by the list. The DataFrames also match and so we have an equivalence between the DataFrame space and the object space.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataframe</span> <span class="o">=</span> <span class="n">one_handler</span><span class="o">.</span><span class="n">dataframe</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">second_handler</span> <span class="o">=</span> <span class="n">Base_Handler</span><span class="p">(</span><span class="n">obj_class</span><span class="o">=</span><span class="n">Base_Object</span><span class="p">,</span> <span class="n">obj_df</span><span class="o">=</span><span class="n">dataframe</span><span class="p">)</span>
+<span class="n">second_handler</span><span class="o">.</span><span class="n">objects</span>
 </pre></div>
 
     </div>
@@ -154,7 +259,7 @@ basis for creating the pandas dataframe</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;object_id&#39;]</pre>
+<pre>{&#39;123&#39;: 123, &#39;234&#39;: 234}</pre>
 </div>
 
 </div>
@@ -168,6 +273,45 @@ basis for creating the pandas dataframe</p>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">one_handler</span><span class="o">.</span><span class="n">dataframe</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="o">==</span> <span class="n">second_handler</span><span class="o">.</span><span class="n">dataframe</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="k">assert</span> <span class="n">one_handler</span><span class="o">.</span><span class="n">objects</span> <span class="o">==</span> <span class="n">one_handler</span><span class="o">.</span><span class="n">objects</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally, if the columns of your dataframe do not match your property names you can provide a property to column dictionary as property_mappings.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataframe_renamed</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">dataframe_renamed</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a_new_name&#39;</span><span class="p">]</span>
+<span class="n">second_handler</span> <span class="o">=</span> <span class="n">Base_Handler</span><span class="p">(</span><span class="n">obj_class</span><span class="o">=</span><span class="n">Base_Object</span><span class="p">,</span> <span class="n">obj_df</span><span class="o">=</span><span class="n">dataframe_renamed</span><span class="p">,</span> <span class="n">property_mappings</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;object_id&#39;</span><span class="p">:</span> <span class="s1">&#39;a_new_name&#39;</span><span class="p">})</span>
+
+<span class="n">second_handler</span><span class="o">.</span><span class="n">object_properties</span><span class="o">!=</span><span class="nb">list</span><span class="p">(</span><span class="n">second_handler</span><span class="o">.</span><span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -175,10 +319,209 @@ basis for creating the pandas dataframe</p>
 <div class="output_area">
 
 
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="Base_Handler" class="doc_header"><code>class</code> <code>Base_Handler</code><a href="https://github.com/armstrys/oos/tree/main/oos/base.py#L56" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Base_Handler</code>(<strong><code>obj_class</code></strong>=<em><code>Base_Object</code></em>, <strong><code>obj_list</code></strong>=<em><code>None</code></em>, <strong><code>obj_df</code></strong>=<em><code>None</code></em>, <strong><code>property_mappings</code></strong>=<em><code>{}</code></em>)</p>
-</blockquote>
 
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Things start to get more interesting when we can <code>query</code> (analogous to <code>Pandas.DataFrame.query</code>) against our Handler instance. We can return the result as a DataFrame just like <code>Pandas</code></p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obj_id</span> <span class="o">=</span> <span class="n">one_obj</span><span class="o">.</span><span class="n">object_id</span>
+<span class="n">one_handler</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;object_id == @obj_id&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Empty DataFrame
+Columns: []
+Index: [123]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Or</strong> as an our Object (or a series of Objects):</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">queried_obj</span> <span class="o">=</span> <span class="n">one_handler</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;object_id == @obj_id&#39;</span><span class="p">,</span> <span class="n">as_type</span><span class="o">=</span><span class="s1">&#39;objects&#39;</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">queried_obj</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>__main__.Base_Object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Or</strong> most interestingly as another Handler instance that is a subset of the first:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">queried_handler</span> <span class="o">=</span> <span class="n">one_handler</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;object_id == @obj_id&#39;</span><span class="p">,</span> <span class="n">as_type</span><span class="o">=</span><span class="s1">&#39;handler&#39;</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">queried_handler</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>__main__.Base_Handler</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Lastly, we can map an object method into a DataFrame Column. This is just one simple way to start to build DataFrames using Class based methods across objects.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">one_handler</span><span class="o">.</span><span class="n">map_object_method</span><span class="p">(</span><span class="n">obj_method</span><span class="o">=</span><span class="n">Base_Object</span><span class="o">.</span><span class="n">get_properties</span><span class="p">)</span>
+<span class="n">one_handler</span><span class="o">.</span><span class="n">dataframe</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>object_id</th>
+      <th>get_properties</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>123</td>
+      <td>{'object_id': '123'}</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>234</td>
+      <td>{'object_id': '234'}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 </div>
 
 </div>
