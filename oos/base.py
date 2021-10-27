@@ -4,6 +4,9 @@ __all__ = ['Base_Object', 'Base_Handler']
 
 # Cell
 
+import pandas as pd
+import inspect
+
 class Base_Object(object):
     '''
     A base object. The only requirement of all
@@ -49,9 +52,6 @@ class Base_Object(object):
         return prop_dict
 
 # Cell
-
-import pandas as pd
-import inspect
 
 class Base_Handler():
     def __init__(self, obj_class=Base_Object, obj_list=None, obj_df=None, property_mappings={}):
