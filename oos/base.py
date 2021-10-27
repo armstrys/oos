@@ -54,6 +54,7 @@ class Base_Object(object):
 # Cell
 
 class Base_Handler():
+
     def __init__(self, obj_class=Base_Object, obj_list=None, obj_df=None, property_mappings={}):
         '''
         class should be instantiated with a list of Team object created using
