@@ -1,6 +1,7 @@
 # oos
 > A basic framework for object-oriented sports analysis
 
+As of now this is a totally experimental project for me to learn package development more than anything else. I don't yet see any real advantage to using this for analysis.
 
 ### Object-Oriented Sports!
 
